@@ -23,8 +23,14 @@ export default {
         authError(state) {
             return state.auth_error;
         },
+        registerError(state) {
+            return state.auth_error;
+        },
         customers(state) {
             return state.customers;
+        },
+        rooms(state) {
+            return state.rooms;
         }
     },
     mutations: {
@@ -44,6 +50,14 @@ export default {
             state.loading = false;
             state.auth_error = payload.error;
         },
+        register(state) {
+            state.loading = true;
+            state.auth_error = null;
+        },
+        registerFailed(state, payload) {
+            state.loading = false;
+            state.auth_error = payload.error;
+        },
         logout(state) {
             localStorage.removeItem("user");
             state.isLoggedIn = false;
@@ -56,6 +70,9 @@ export default {
     actions: {
         login(context) {
             context.commit("login");
+        },
+        register(context) {
+            context.commit("register");
         },
         getCustomers(context) {
             axios.get('/api/customers')

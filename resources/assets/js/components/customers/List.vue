@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="btn-wrapper">
-            <router-link to="/Vue-Laravel-SPA/public/students/new" class="btn btn-primary btn-sm">New</router-link>
+            <router-link  to="/students/new" class="btn btn-primary btn-sm">New</router-link>
         </div>
         <userList></userList>
         

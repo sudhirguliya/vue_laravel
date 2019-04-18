@@ -7,12 +7,7 @@
 
         <form @submit.prevent="add">
             <table class="table">
-                <tr>
-                    <th>Room</th>
-                    <td>
-                        <input type="text" class="form-control" v-model="customer.room" placeholder="Customer Room"/>
-                    </td>
-                </tr>
+               
                 <tr>
                     <th>Name</th>
                     <td>
@@ -32,6 +27,19 @@
                         <input type="text" class="form-control" v-model="customer.phone" placeholder="Customer Phone"/>
                     </td>
                 </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>
+                        <input type="password" id="password" class="form-control" v-model="customer.password"  placeholder="Customer Password">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Confirm Password</th>
+                    <td>
+                        <input type="password" id="password_confirmation" class="form-control" v-model="customer.password_confirmation" placeholder="Confirmed Password">
+                    </td>
+                </tr>
+
                 <!-- <tr>
                     <th>Website</th>
                     <td>
@@ -40,7 +48,7 @@
                 </tr> -->
                 <tr>
                     <td>
-                        <router-link to="/Vue-Laravel-SPA/public/students" class="btn">Cancel</router-link>
+                        <router-link to="/students" class="btn">Cancel</router-link>
                     </td>
                     <td class="text-right">
                         <input type="submit" value="Create" class="btn btn-primary">
@@ -66,10 +74,12 @@
         data() {
             return {
                 customer: {
-                    room: '',
+                   
                     name: '',
                     email: '',
-                    phone: ''
+                    phone: '',
+                    password: '',
+                    password_confirmation: '',
                 },
                 has_error: false,
                 errors: null
@@ -95,7 +105,8 @@
 
                 axios.post('/api/customers/new', this.$data.customer)
                     .then((response) => {
-                        this.$router.push('/Vue-Laravel-SPA/public/customers');
+                        this.$router.push('/students');
+                        //this.$router.push({name: 'students'});
                     })
                     .catch((err) =>{
                         console.log(err)
@@ -107,13 +118,7 @@
             },
             getConstraints() {
                 return {
-                    room: {
-                        presence: true,
-                        length: {
-                            minimum: 3,
-                            message: 'Must be at least 3 characters long'
-                        }
-                    },
+                    
                     name: {
                         presence: true,
                         length: {

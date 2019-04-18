@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -13,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -30,6 +33,34 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function register(Request $request)
+    {
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|min:9|max:15',
+            'password'  => 'required|min:3|confirmed',
+        ]);
+
+        if ($v->fails())
+        {
+            return response()->json([
+                'error' => 'registration_validation_error',
+                'errors' => $v->errors()
+            ], 422);
+        }
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->role = 2;
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return response()->json(['status' => 'success'], 200);
     }
 
     /**

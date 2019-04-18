@@ -26,7 +26,7 @@
                     <td>{{ customer.website }}</td>
                 </tr> -->
             </table>
-            <router-link to="/Vue-Laravel-SPA/public/customers">Back to all customers</router-link>
+            <router-link to="/students">Back to all students</router-link>
         </div>
     </div>
 </template>

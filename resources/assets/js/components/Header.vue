@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <router-link class="navbar-brand" to="/Vue-Laravel-SPA/public">My Webinar App</router-link>
+            <router-link class="navbar-brand" to="/">My Webinar App</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -9,15 +9,18 @@
                 <ul class="navbar-nav ml-auto">
                     <template v-if="!currentUser">
                         <li>
-                            <router-link to="/Vue-Laravel-SPA/public/login" class="nav-link">Login</router-link>
+                            <router-link to="/login" class="nav-link">Login</router-link>
                         </li>
                         <li>
-                            <router-link to="/Vue-Laravel-SPA/public/register" class="nav-link">Register</router-link>
+                            <router-link to="/register" class="nav-link">Register</router-link>
                         </li>
                     </template>
                     <template v-else>
                         <li>
-                            <router-link to="/Vue-Laravel-SPA/public/students" class="nav-link">Students</router-link>
+                            <router-link to="/rooms" class="nav-link">Rooms</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/students" class="nav-link">Students</router-link>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">

@@ -23,7 +23,7 @@
 
     <table class="table">
             <thead>
-                <th>Room</th>
+                
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -37,12 +37,12 @@
                 </template>
                 <template v-else> -->
                     <tr v-for="customer in customers" :key="customer.id">
-                        <td>{{ customer.room }}</td>
+                       
                         <td>{{ customer.name }}</td>
                         <td>{{ customer.email }}</td>
                         <td>{{ customer.phone }}</td>
                         <td>
-                            <router-link :to="`/Vue-Laravel-SPA/public/students/${customer.id}`">View</router-link>
+                            <router-link :to="`/students/${customer.id}`">View</router-link>
                         </td>
                     </tr>
                 <!-- </template> -->

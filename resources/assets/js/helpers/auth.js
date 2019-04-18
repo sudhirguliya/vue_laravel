@@ -13,6 +13,19 @@ export function login(credentials) {
     })
 }
 
+export function register(credentials) {
+    return new Promise((res, rej) => {
+        axios.post('/api/auth/register', credentials)
+            .then((response) => {
+               
+                this.$router.push({name: 'login' })
+            })
+            .catch((err) =>{
+                rej("Wrong email or other data");
+            })
+    })
+}
+
 export function getLocalUser() {
     const userStr = localStorage.getItem("user");
 

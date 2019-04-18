@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('login', 'AuthController@login')->name('login');
+Route::get('chat/{room}/{user}/{teacher}/{student}', 'HomeController@chat');
+//Route::get('login', 'AuthController@login');
+
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');

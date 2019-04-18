@@ -4,9 +4,9 @@ export function initialize(store, router) {
         const currentUser = store.state.currentUser;
     
         if(requiresAuth && !currentUser) {
-            next('/Vue-Laravel-SPA/public/login');
-        } else if(to.path == '/Vue-Laravel-SPA/public/login' && currentUser) {
-            next('/Vue-Laravel-SPA/public');
+            next('/login');
+        } else if(to.path == '/login' && currentUser) {
+            next('/');
         } else {
             next();
         }
@@ -15,7 +15,7 @@ export function initialize(store, router) {
     axios.interceptors.response.use(null, (error) => {
         if (error.resposne.status == 401) {
             store.commit('logout');
-            router.push('/Vue-Laravel-SPA/public/login');
+            router.push('/');
         }
 
         return Promise.reject(error);
